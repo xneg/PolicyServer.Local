@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PolicyServer;
 
 namespace Host
 {
@@ -43,6 +44,8 @@ namespace Host
 
             // this adds the necessary handler for our custom medication requirement
             services.AddTransient<IAuthorizationHandler, MedicationRequirementHandler>();
+
+            services.AddPolicyServer();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -56,6 +59,10 @@ namespace Host
             app.UsePolicyServerClaims();
 
             app.UseStaticFiles();
+
+            //app.UseIdentityServer();
+            app.UseMiddleware<PolicyServerMiddleware>();
+
             app.UseMvcWithDefaultRoute();
         }
     }

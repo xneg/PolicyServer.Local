@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\PolicyServer\PolicyServer.csproj" />
     <ProjectReference Include="..\PolicyServer.Local\PolicyServer.Local.csproj" />
   </ItemGroup>
 
